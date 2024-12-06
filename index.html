@@ -16,14 +16,22 @@
             background-color: #000000;
             color: aliceblue!important;
         }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
         .card {
-            height: 75vh;
+            /*height: 75vh;
+            width: auto;*/
+            display: flex;
+            flex-direction: column;
+            flex: 1;
             border-width: 4px;
             border-color: blue;
             border-style: solid;
-            object-fit: fill;
             background-color: #000000;
+
         }
 
         .card-img-top {
@@ -36,8 +44,6 @@
         .card-body {
             height: 40%;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
         }
         .tags {
             margin-top: auto;
@@ -46,6 +52,11 @@
         }
         .txt-clr{
             color: aliceblue;
+        }
+        @media (max-width: 576px) {
+            .card-body {
+                overflow-y: auto;
+            }
         }
     </style>
 </head>
@@ -71,6 +82,11 @@
                 <div hidden id="clipboard" class="position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill">
                     email copied to clipboard <svg width="1em" height="1em" viewBox="0 0 16 16" class="position-absolute top-100 start-50 translate-middle mt-1" fill="var(--bs-secondary)" xmlns="http://www.w3.org/2000/svg"><path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>
                 </div>
+
+            </div>
+            <div class="position-absolute top-0 end-0 mt-4 me-3">
+                <button id="btn-en" class="btn btn-primary" onclick="switchLanguage('en')">English</button>
+                <button id="btn-fr" class="btn btn-outline-secondary" onclick="switchLanguage('fr')">Français</button>
             </div>
         </div>
     </header>
@@ -78,16 +94,28 @@
     <div class="container px-4 pb-2">
         <div class="row g-4">
             <!-- Project 1: LaureatNet -->
-            <div class="col">
+            <div class="col-12 col-md-6 d-flex">
                 <div class="card">
                     <img src="./assets/laureatnet.png" class="card-img-top" alt="LaureatNet Project">
                     <div class="card-body">
                         <a href="laureatNet" target="_blank">
                             <h5 class="card-title">LaureatNet</h5>
                         </a>
-                        <p class="card-text txt-clr">
+                        <p class="card-text txt-clr" 
+                            data-lang-en="A professional networking platform to connect laureates." 
+                            data-lang-fr="Une plateforme de réseautage professionnel pour connecter les lauréats.">
                             A professional networking platform to connect laureates.
                         </p>
+                        <div class="card-text txt-clr" 
+                            data-lang-en="<ul><li>Designed and implemented user interfaces for posts, job opportunities, and research articles.</li><li>Created a RESTful API secured with JWT authentication for secure querying of user data from the app database.</li></ul>" 
+                            data-lang-fr="<ul><li>Conçu et mis en œuvre des interfaces utilisateur pour les publications, les opportunités d'emploi et les articles de recherche.</li><li>Création d'une API REST sécurisée avec authentification JWT pour l'interrogation sécurisée des données utilisateur.</li></ul>">
+                        
+                        <!-- Default English Content -->
+                        <ul>
+                            <li>Designed and implemented user interfaces for posts, job opportunities, and research articles.</li>
+                            <li>Created a RESTful API secured with JWT authentication for secure querying of user data from the app database.</li>
+                        </ul>
+                        </div>
                         <div class="tags">
                             <span class="badge bg-primary">Java</span>
                             <span class="badge bg-success">Spring Boot</span>
@@ -98,16 +126,25 @@
             </div>
 
             <!-- Project 2: Mafia Game -->
-            <div class="col">
+            <div class="col-12 col-md-6 d-flex">
                 <div class="card">
                     <img src="./assets/mafia.png" class="card-img-top" alt="Mafia Game Project">
                     <div class="card-body">
                         <a href="https://hypersauce.itch.io/mafia" target="_blank">
                             <h5 class="card-title">Mafia Game</h5>
                         </a>
-                        <p class="card-text txt-clr">
+                        <p class="card-text txt-clr" 
+                            data-lang-en="A strategy-based multiplayer tabletop game implemented with Unity." 
+                            data-lang-fr="Un jeu de société multijoueur basé sur la stratégie, développé avec Unity.">
                             A strategy-based multiplayer tabletop game implemented with Unity.
                         </p>
+                        <div class="card-text txt-clr" 
+                            data-lang-en="<ul><li>Designed and developed a multiplayer Mafia-style game using Unity, utilizing the relay, lobby, and network game objects Unity services.</li></ul>" 
+                            data-lang-fr="<ul><li>Conçu et développé un jeu multijoueur de style Mafia avec Unity, en utilisant les services relay, lobby et les objets réseau de Unity.</li></ul>">
+                            <ul>
+                                <li>Designed and developed a multiplayer Mafia-style game using Unity, utilizing the relay, lobby, and network game objects Unity services.</li>
+                            </ul>
+                        </div>
                         <div class="tags">
                             <span class="badge bg-secondary">Unity</span>
                             <span class="badge bg-info text-dark">C#</span>
@@ -117,13 +154,43 @@
             </div>
 
             <!-- Project 3 -->
-           
+            <div class="col-12 col-md-6 d-flex">
+                <div class="card">
+                    <img src="./assets/chiprush.png" class="card-img-top" alt="Chip Rush Game Project">
+                    <div class="card-body">
+                        <a href="https://hypersauce.itch.io/chip-rush" target="_blank">
+                            <h5 class="card-title">Chip Rush</h5>
+                        </a>
+                        <p class="card-text txt-clr" 
+                            data-lang-en="A 2D game where you must get all the chips to the enemy side to win, created with Unity and C#." 
+                            data-lang-fr="Un jeu en 2D où vous devez amener tous les chips du côté ennemi pour gagner, créé avec Unity et C#.">
+                            A 2D game where you must get all the chips to the enemy side to win, created with Unity and C#.
+                        </p>
+                        <div class="card-text txt-clr" 
+                            data-lang-en="<ul><li>Coded the physics for chip collision, floor, and wall friction.</li><li>Developed a simple AI with three difficulty levels.</li><li>Designed the core game mechanics and implemented them in Unity.</li></ul>" 
+                            data-lang-fr="<ul><li>Codé la physique des collisions des chips, ainsi que des frottements au sol et contre les murs.</li><li>Développé une IA simple avec trois niveaux de difficulté.</li><li>Conçu et implémenté les mécaniques de jeu principales dans Unity.</li></ul>">
+                            <ul>
+                                <li>Coded the physics for chip collision, floor, and wall friction.</li>
+                                <li>Developed a simple AI with three difficulty levels.</li>
+                                <li>Designed the core game mechanics and implemented them in Unity.</li>
+                            </ul>
+                        </div>
+                        <div class="tags">
+                            <span class="badge bg-secondary">Unity</span>
+                            <span class="badge bg-info text-dark">C#</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let current_language = 'en';
+        
         function copy(){
             try {
                 navigator.clipboard.writeText("ayoubhilmi2002@gmail.com");
@@ -134,6 +201,32 @@
             } catch (err) {
                 console.error('Failed to copy: ', err);
             }
+        }
+
+        function switchLanguage(lang) {
+            if(current_language==lang)return;
+            current_language = lang;
+            // Get the buttons
+            const btnEn = document.getElementById('btn-en');
+            const btnFr = document.getElementById('btn-fr');
+
+            if (lang === 'en') {
+                //console.log("hi en");
+                btnEn.classList.remove('btn-outline-primary');
+                btnEn.classList.add('btn-primary');
+                btnFr.classList.remove('btn-primary');
+                btnFr.classList.add('btn-outline-secondary');
+            } else if (lang === 'fr') {
+                //console.log("hi fr");
+                btnFr.classList.remove('btn-outline-secondary');
+                btnFr.classList.add('btn-primary');
+                btnEn.classList.remove('btn-primary');
+                btnEn.classList.add('btn-outline-primary');
+            }
+              // Update text content based on selected language
+            document.querySelectorAll('[data-lang-en]').forEach((element) => {
+                element.innerHTML = element.getAttribute(`data-lang-${lang}`);
+            });
         }
     </script>
 </body>
